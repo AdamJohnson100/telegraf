@@ -114,12 +114,6 @@ var srvc service.Service
 type program struct{}
 
 func reloadLoop(stop chan struct{}, s service.Service) {
-	defer func() {
-		if service.Interactive() {
-			os.Exit(0)
-		}
-		return
-	}()
 	reload := make(chan bool, 1)
 	reload <- true
 	for <-reload {
